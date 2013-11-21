@@ -15,7 +15,13 @@
 	?>
 	<h2>
 		<a href="<?=base_url()?>posts/post/<?=$row['postID']?>">
-			<?=$row['title']?>
+			<?=$row['title']?> - 
+		</a>
+		<a href="<?=base_url()?>posts/editpost/<?=$row['postID']?>">
+			Edit - 
+		</a>
+		<a href="<?=base_url()?>posts/deletepost/<?=$row['postID']?>">
+			Delete
 		</a>
 	</h2>
 	<p><?=substr(strip_tags($row['post']),0,200).".."?></p>
@@ -29,5 +35,6 @@
 		}
 	}
 	?>
+	<?=$pages?>
 </body>
 </html>

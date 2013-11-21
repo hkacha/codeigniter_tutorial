@@ -3,11 +3,18 @@
 class Post extends CI_Model
 {
 	
-	public function get_posts($num=20, $start=0)
+	function get_posts($num=20, $start=0)
 	{
 		$this->db->select()->from('posts')->where('active',1)->order_by('date_added','desc')->limit($num,$start);
 		$query = $this->db->get();
 		return $query->result_array();
+	}
+
+	function get_posts_count()
+	{
+		$this->db->select('postID')->from('posts')->where('active',1);
+		$query = $this->db->get();
+		return $query->num_rows();
 	}
 
 	function get_post($postID)
@@ -23,9 +30,16 @@ class Post extends CI_Model
 		return;
 	}
 
-	function update_post($data)
+	function update_post($postID,$data)
 	{
-		$this->db->
+		$this->db->where('postID',$postID);
+		$this->db->update('posts',$data);
+	}
+
+	function delete_post($postID)
+	{
+		$this->db->where('postID',$postID);
+		$this->db->delete('posts');
 	}
 }
 
